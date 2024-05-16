@@ -1,0 +1,23 @@
+.playerContainer {
+        // background-color: red;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+    }
+
+.btnContainer {
+    button {
+        display: block;
+        margin: auto;
+        padding: 10px;
+        width: 100px;
+    }
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}

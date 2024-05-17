@@ -5,10 +5,12 @@ import styles from '../player.module.scss'
 
 export const GameManager = () => {
 
-    let [playerOneScore, setPlayerOneScore] = useState(0)
-    let [playerTwoScore, setPlayerTwoScore] = useState(0)
-    let [playerOneRoll, setPlayerOneRoll] = useState(0);
-    let [playerTwoRoll, setPlayerTwoRoll] = useState(0);
+    const [playerOneScore, setPlayerOneScore] = useState(0)
+    const [playerTwoScore, setPlayerTwoScore] = useState(0)
+    const [playerOneRoll, setPlayerOneRoll] = useState(0);
+    const [playerTwoRoll, setPlayerTwoRoll] = useState(0);
+    const [disableButton, setDisabledButton] = useState(false)
+    const [isGameRunning, setIsGameRunning] = useState(false)
 
 
     useEffect(() => {
@@ -20,9 +22,11 @@ export const GameManager = () => {
     }, [playerOneRoll, playerTwoRoll])
 
     function Winner () {
-        if (playerOneScore == 5) {
+        if (playerOneScore == 3) {
+            setDisabledButton(true)
             return <h1>Player One Wins!</h1>
-        } else if (playerTwoScore == 5) {
+        } else if (playerTwoScore == 3) {
+            setDisabledButton(true)
             return <h1>Player Two Wins!</h1>
         }
     }
@@ -43,9 +47,12 @@ export const GameManager = () => {
                 setPlayerTwoRoll(0)
                 setPlayerOneScore(0)
                 setPlayerTwoScore(0)
+                setDisabledButton(false)
+                setIsGameRunning(false)
             }
             return <button onClick={reset}>ResetGame</button>
         }
+
 
   return (
     <div>
@@ -54,7 +61,7 @@ export const GameManager = () => {
         <Player name={'PlayerTwo'} score={playerTwoScore} playerRoll={playerTwoRoll}/>
         </div>
         <div className={styles.btnContainer}>
-        <Dice setPlayerOneRoll={setPlayerOneRoll} setPlayerTwoRoll={setPlayerTwoRoll} />
+        <Dice setIsGameRunning={setIsGameRunning} disableButton={disableButton} setPlayerOneRoll={setPlayerOneRoll} setPlayerTwoRoll={setPlayerTwoRoll} />
         <ResetGame />
         </div>
         <RoundWinner />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const Dice = ({roll, setPlayerOneRoll, setPlayerTwoRoll}) => {
+export const Dice = ({roll, setPlayerOneRoll, setPlayerTwoRoll, disableButton, setIsGameRunning}) => {
     const [disabled, setDisabled] = useState(false) 
 
     function timeOutBtn () {
@@ -16,11 +16,12 @@ export const Dice = ({roll, setPlayerOneRoll, setPlayerTwoRoll}) => {
         setPlayerOneRoll(playerOneRoll)
         setPlayerTwoRoll(playerTwoRoll)
         timeOutBtn();
+        setIsGameRunning(true)
     }
 
   return ( 
     <div>
-        <button onClick={rollDice} disabled={disabled}>Roll Dice</button>
+        <button onClick={rollDice} disabled={disabled || disableButton}>Roll Dice</button>
     </div>
   )
 }
